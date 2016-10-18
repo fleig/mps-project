@@ -85,7 +85,6 @@ public class FacadeCRUDTest {
         Usuario u = new Usuario("usuario", "senha123");
         facadeCRUD.addUsuario(u);
 
-
         //erro senha curta
         try {
             Usuario usuario = new Usuario("usuario", "senha123");
@@ -131,12 +130,37 @@ public class FacadeCRUDTest {
 
     @Test
     public void removeUsuario() throws Exception {
+        Usuario u = new Usuario("teste", "senha123");
+        facadeCRUD.addUsuario(u);
 
+        //erro login inexistente
+        try {
+            Usuario usuario = new Usuario("usuario1", "senha123");
+            facadeCRUD.removeUsuario(usuario);
+        } catch (InvalidUsuarioException e){
+            assertEquals(e.getMessage(), StringUtils.ERRO_LOGIN_INEXISTENTE);
+        }
+
+        //valido
+        Usuario usuario = new Usuario("teste", "senha123");
+        facadeCRUD.removeUsuario(usuario);
     }
 
     @Test
     public void getUsuario() throws Exception {
+        Usuario u = new Usuario("testando", "senha123");
+        facadeCRUD.addUsuario(u);
 
+        //erro login inexistente
+        try {
+            Usuario usuario = facadeCRUD.getUsuario("user");
+        } catch (InvalidUsuarioException e){
+            assertEquals(e.getMessage(), StringUtils.ERRO_LOGIN_INEXISTENTE);
+        }
+
+        //valido
+        Usuario usuario = facadeCRUD.getUsuario("testando");
+        assertNotNull(usuario);
     }
 
 }

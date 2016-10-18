@@ -16,9 +16,14 @@ public class UsuarioControl {
 		validaLogin(usuario.getLogin());
 		validaSenha(usuario.getSenha());
 		
-		if(usuarioList.contains(usuario)){
-			throw new InvalidUsuarioException(StringUtils.ERRO_LOGIN_EXISTENTE);
+		for(Usuario u : usuarioList){
+			if(u.getLogin() == usuario.getLogin())
+				throw new InvalidUsuarioException(StringUtils.ERRO_LOGIN_EXISTENTE);
 		}
+
+//		if(usuarioList.contains(usuario)){
+//			throw new InvalidUsuarioException(StringUtils.ERRO_LOGIN_EXISTENTE);
+//		}
 		
 		//chamar persistencia
 		usuarioList.add(usuario);
@@ -34,8 +39,6 @@ public class UsuarioControl {
 	public void removeUsuario(Usuario usuario) throws InvalidUsuarioException{
 		if(validaExistente(usuario)){
 			usuarioList.remove(usuario);
-		} else {
-			throw new InvalidUsuarioException(StringUtils.ERRO_LOGIN_INEXISTENTE);
 		}
 	}
 

@@ -44,7 +44,7 @@ public class Usuario {
 	@Override
 	public int hashCode() {
 		int hashCode = login.hashCode();
-		hashCode = 89 * hashCode + senha.hashCode();
+		hashCode = 31 * hashCode + senha.hashCode();
 		return hashCode;
 	}
 }
