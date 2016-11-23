@@ -29,6 +29,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+	public void update() {
+
+		///  OLHA AS NOVAS RECEITAS AQUI
+
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Usuario)){

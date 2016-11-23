@@ -87,4 +87,13 @@ public class UsuarioControl {
 
 		return true;
 	}
+
+	// observer aqui
+
+	private void notifyUsuarios(){
+		for(Usuario u : usuarioList){
+			u.notify();
+		}
+	}
+
 }

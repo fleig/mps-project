@@ -6,4 +6,6 @@ package business.control;
 public class ReceitaControl {
 
     // gerencia as receitas
+
+    // quando add uma receita, os usuarios devem ser notificados
 }
