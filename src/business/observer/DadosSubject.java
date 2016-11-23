@@ -3,6 +3,8 @@ package business.observer;
 /**
  * Created by UFPB-CIA-03 on 22/11/2016.
  */
+import business.model.Receita;
+
 import java.util.ArrayList;
 
 public class DadosSubject {

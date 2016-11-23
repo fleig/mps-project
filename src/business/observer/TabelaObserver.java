@@ -11,7 +11,7 @@ public class TabelaObserver extends DadosObserver {
 
     @Override
     public void update() {
-        System.out.println("Receita Adicionada:"
-                + dados.getState().getTitulos());
+//        System.out.println("Receita Adicionada:"
+//                + dados.getState().getTitulos());
     }
 }
