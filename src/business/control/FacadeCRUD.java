@@ -1,6 +1,8 @@
 package business.control;
 
 import business.model.Usuario;
+import business.model.Receita;
+import business.state.State;
 
 /**
  * Created by lucas on 17/10/16.
@@ -8,6 +10,7 @@ import business.model.Usuario;
 public class FacadeCRUD {
     private static FacadeCRUD myInstance;
     private UsuarioControl usuarioControl = new UsuarioControl();
+    private ReceitaControl receitaControl = new ReceitaControl();
     private RelatorioControl relatorioControl = new RelatorioControl();
 
     private FacadeCRUD() {}
@@ -37,6 +40,31 @@ public class FacadeCRUD {
 
     public Usuario getUsuario(String login) throws InvalidUsuarioException {
         return this.usuarioControl.getUsuario(login);
+    }
+
+
+    public void addReceita(Receita receita) throws InvalidReceitaException {
+        this.receitaControl.addReceita(receita);
+    }
+
+    public void updateReceita(Receita receita,State state) throws InvalidReceitaException {
+        this.receitaControl.updateReceita(receita, state);
+    }
+
+    public void removeReceita(Receita receita) throws InvalidReceitaException {
+        this.receitaControl.removeReceita(receita);
+    }
+
+    public Receita getReceita(String titulo) throws InvalidReceitaException {
+        return this.receitaControl.getReceita(titulo);
+    }
+
+    public void addObserver(Usuario usuario){
+        receitaControl.attach(usuario);
+    }
+
+    public void removeObserver(Usuario usuario){
+        receitaControl.detach(usuario);
     }
 
 }

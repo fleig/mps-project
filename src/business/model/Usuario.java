@@ -1,10 +1,18 @@
 package business.model;
 
+import business.control.FacadeCRUD;
+import business.control.InvalidReceitaException;
+import business.control.InvalidUsuarioException;
+import utils.StringUtils;
+
+import java.util.ArrayList;
+
 public class Usuario {
 	private String login;
 	private String senha;
-	
-	public Usuario(){}
+	private ArrayList<String> novas_receitas = new ArrayList<>();
+
+
 
 	public Usuario(String login) {
 		this.login = login;
@@ -15,6 +23,7 @@ public class Usuario {
 		this.login = login;
 		this.senha = senha;
 	}
+
 
 	public String getLogin() {
 		return login;
@@ -29,9 +38,25 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public void update() {
+	public void update(String titulo) {
+		// envia notificação
+		novas_receitas.add(titulo);
+		System.out.println(this.getLogin()+", nova receita adicionada");
+	}
 
-		///  OLHA AS NOVAS RECEITAS AQUI
+	public void visualizarNovasReceitas() throws InvalidReceitaException{
+
+		for(String titulo: novas_receitas){
+			try {
+				FacadeCRUD.getInstance().getReceita(titulo);
+				System.out.println("receita :"+ titulo);
+			} catch (InvalidReceitaException e) {
+				System.out.println("a receita "+titulo+" nao está mais disponivel");
+
+				throw new InvalidReceitaException(StringUtils.ERRO_RECEITA_INEXISTENTE);
+			}
+
+		}
 
 	}
 
